@@ -4,14 +4,14 @@ var Server = mongo.Server,
 	Db = mongo.Db,
 	BSON = mongo.BSONPure;
 
-var server = new Server('localhost', 27017, {auto_reconnect:true});
-db = new Db('blogdb', server, {safe:true});
+var server = new Server('ds053380.mongolab.com', 53380, {auto_reconnect:true});
+db = new Db('heroku_app31900246', server, {safe:true});
 
 db.open(function(err, db) {
 
 	if(!err) {
 
-		console.log("Connected to 'blogdb' database");
+		console.log("Connected to 'heroku_app31900246' database");
 
 		db.collection('posts', {safe:true}, function(err, collection) {
 
