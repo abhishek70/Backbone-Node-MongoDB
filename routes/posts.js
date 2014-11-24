@@ -8,20 +8,20 @@ var server = new Server('ds053380.mongolab.com', 53380, {auto_reconnect:true});
 db = new Db('heroku_app31900246', server, {safe:true});
 
 db.open(function(err, db) {
+    db.authenticate('abhishek', '!P@ssword123#', function(err, success) {
+        if(!err) {
 
-	if(!err) {
+			console.log("Connected to 'heroku_app31900246' database");
 
-		console.log("Connected to 'heroku_app31900246' database");
+			db.collection('posts', {safe:true}, function(err, collection) {
 
-		db.collection('posts', {safe:true}, function(err, collection) {
+				if(err) {
 
-			if(err) {
-
-				console.log("The 'posts' collection doesn't exist.");
-			}
-		});
-	};
-
+					console.log("The 'posts' collection doesn't exist.");
+				}
+			});
+		};
+    });
 });
 
 exports.findById = function(req, res) {
