@@ -1,12 +1,40 @@
-var mongo = require('mongodb');
+var mongo = require('mongodb'); // set up mongodb
 
+// creating server, DB and BSONPure Object
 var Server = mongo.Server,
 	Db = mongo.Db,
 	BSON = mongo.BSONPure;
 
-var server = new Server('ds053380.mongolab.com', 53380, {auto_reconnect:true});
-db = new Db('heroku_app31900246', server, {safe:true});
+// Setting up the Local MongoDB Configuration 
+var server = new Server('localhost', 27017, {auto_reconnect:true});
+db = new Db('blogdb', server, {safe:true});
 
+// Setting up the Production MongoDB Configuration
+/* 
+var server = new Server('ds053380.mongolab.com', 53380, {auto_reconnect:true});
+db = new Db('heroku_app31900246', server, {safe:true});*/
+
+// Connecting with the Local MongoDB and its Collections
+db.open(function(err, db) {
+
+	if(!err) {
+
+		console.log("Connected to 'blogdb' database");
+
+		db.collection('posts', {safe:true}, function(err, collection) {
+
+			if(err) {
+
+				console.log("The 'posts' collection doesn't exist.");
+			}
+		});
+	};
+
+});
+
+
+// Connecting with the Production MongoDB and its Collections
+/*
 db.open(function(err, db) {
     db.authenticate('abhishek', '!P@ssword123#', function(err, success) {
         if(!err) {
@@ -22,8 +50,9 @@ db.open(function(err, db) {
 			});
 		};
     });
-});
+});*/
 
+// Fetch the document by Id
 exports.findById = function(req, res) {
 
 	var id = req.params.id;
@@ -39,6 +68,7 @@ exports.findById = function(req, res) {
 	});
 }
 
+// Get All Documents from the Posts Collection
 exports.findAll = function(req, res) {
 
 	db.collection('posts', function(err, collection) {
@@ -51,6 +81,7 @@ exports.findAll = function(req, res) {
 }
 
 
+// Save the new Post Model to the Posts Document
 exports.addPost = function(req, res) {
 
 	var post = req.body;
@@ -74,6 +105,8 @@ exports.addPost = function(req, res) {
 	});
 }
  
+ 
+// Update the document from the Id
 exports.updatePost = function(req, res) {
 
 	var id = req.params.id;
@@ -101,6 +134,7 @@ exports.updatePost = function(req, res) {
 }
 
 
+// Delete the document based on Id
 exports.deletePost = function(req, res) {
 
 	var id = req.params.id;

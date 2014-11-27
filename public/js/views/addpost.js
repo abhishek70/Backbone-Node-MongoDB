@@ -37,6 +37,7 @@ window.AddPostView = Backbone.View.extend({
         }
     },
 
+    // Check for any error before saving to the database
     beforeSave: function () {
         var self = this;
         var check = this.model.validateAll();
@@ -48,6 +49,7 @@ window.AddPostView = Backbone.View.extend({
         return false;
     },
 
+    // Save the Post Model in the database
     savePost: function () {
         var self = this;
         console.log('before save');
@@ -63,6 +65,7 @@ window.AddPostView = Backbone.View.extend({
         });
     },
 
+    // Delete the Post Model in the database
     deletePost: function () {
         this.model.destroy({
             success: function () {

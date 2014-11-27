@@ -23,9 +23,6 @@ app.use(cookieParser());
 // Starting of Web App
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', routes);
-//app.use('/users', users);
-
 app.get('/posts', post.findAll);
 app.get('/posts/:id', post.findById);
 app.post('/posts', post.addPost);

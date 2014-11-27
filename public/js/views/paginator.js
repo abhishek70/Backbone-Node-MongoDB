@@ -1,5 +1,7 @@
+// Setting up the Paginator View
 window.Paginator = Backbone.View.extend({
 
+    // Setting CSS Class name
     className: "pagination pagination-centered",
 
     initialize:function () {

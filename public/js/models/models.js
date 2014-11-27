@@ -1,9 +1,11 @@
+// Creating the Post Model
 window.Post = Backbone.Model.extend({
 
     urlRoot: "/posts",
 
     idAttribute: "_id",
 
+    // Setting up the initialization and Validation
     initialize: function () {
         this.validators = {};
 
@@ -45,6 +47,7 @@ window.Post = Backbone.Model.extend({
     }
 });
 
+// Creating the Post Collection
 window.PostCollection = Backbone.Collection.extend({
 
     model: Post,

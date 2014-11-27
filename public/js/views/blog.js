@@ -1,3 +1,4 @@
+// Setting up the Blog List
 window.BlogListView = Backbone.View.extend({
 
     initialize: function () {
@@ -22,6 +23,7 @@ window.BlogListView = Backbone.View.extend({
     }
 });
 
+// Rending the Single Post Model View
 window.BlogListItemView = Backbone.View.extend({
 
     tagName: "article",
