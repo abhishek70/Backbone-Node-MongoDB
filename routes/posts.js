@@ -11,8 +11,8 @@ db = new Db('blogdb', server, {safe:true});
 
 // Setting up the Production MongoDB Configuration
 /* 
-var server = new Server('ds053380.mongolab.com', 53380, {auto_reconnect:true});
-db = new Db('heroku_app31900246', server, {safe:true});*/
+var server = new Server('Host', Port, {auto_reconnect:true});
+db = new Db('DatabaseName', server, {safe:true});*/
 
 // Connecting with the Local MongoDB and its Collections
 db.open(function(err, db) {
@@ -36,10 +36,10 @@ db.open(function(err, db) {
 // Connecting with the Production MongoDB and its Collections
 /*
 db.open(function(err, db) {
-    db.authenticate('abhishek', '!P@ssword123#', function(err, success) {
+    db.authenticate('Username', 'Password', function(err, success) {
         if(!err) {
 
-			console.log("Connected to 'heroku_app31900246' database");
+			console.log("Connected to 'Database Name' database");
 
 			db.collection('posts', {safe:true}, function(err, collection) {
 

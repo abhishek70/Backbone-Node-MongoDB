@@ -1,3 +1,4 @@
+// Backbone Router
 var AppRouter = Backbone.Router.extend({
 
     // Defining all application routes

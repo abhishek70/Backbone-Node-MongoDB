@@ -1,10 +1,13 @@
 // Setting up the Blog List
+// Backbone Blog View
 window.BlogListView = Backbone.View.extend({
 
+    // Initialize
     initialize: function () {
         this.render();
     },
 
+    // Render the template
     render: function () {
         var posts = this.model.models;
         var len = posts.length;
@@ -17,6 +20,7 @@ window.BlogListView = Backbone.View.extend({
             $('.thumbnails', this.el).append(new BlogListItemView({model: posts[i]}).render().el);
         }
 
+        // Render the Paginator
         $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
 
         return this;
@@ -29,11 +33,13 @@ window.BlogListItemView = Backbone.View.extend({
     tagName: "article",
     className: "post-box",
 
+    // Initialize
     initialize: function () {
         this.model.bind("change", this.render, this);
         this.model.bind("destroy", this.close, this);
     },
 
+    // Render the template
     render: function () {
         $(this.el).html(this.template(this.model.toJSON()));
         return this;

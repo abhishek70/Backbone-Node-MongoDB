@@ -1,15 +1,19 @@
+// Backbone Post View
 window.AddPostView = Backbone.View.extend({
 
+    // Initialize
     initialize:function () {
         this.render();
     },
 
+    // Render the template
     render: function () {
         
         $(this.el).html(this.template(this.model.toJSON()));
         return this;
     },
 
+    // Execute the Events
     events: {
 
     	"change"        : "change",
@@ -17,6 +21,7 @@ window.AddPostView = Backbone.View.extend({
         "click .delete" : "deletePost",
     },
 
+    // Callback function for the Change event
     change: function (event) {
 
         // Remove any existing alert message
